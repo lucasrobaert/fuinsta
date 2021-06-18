@@ -55,6 +55,7 @@ class RegisterPageState extends State<RegisterPage> {
             },
           ),
           _FormField(
+            isPassword: true,
             controller: _passwordController,
             label: 'Crie uma senha',
             onNext: (){
@@ -74,6 +75,7 @@ class _FormField extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback? onBack;
   final bool showBackButton;
+  final bool isPassword;
   final TextEditingController controller;
 
   _FormField({
@@ -81,6 +83,7 @@ class _FormField extends StatelessWidget {
       required this.onNext,
       this.onBack,
       this.showBackButton = true,
+      this.isPassword = false,
       required this.controller
   });
 
@@ -111,6 +114,7 @@ class _FormField extends StatelessWidget {
                   controller: controller,
                   onEditingComplete: onNext,
                   style: TextStyle(fontSize: 32),
+                  obscureText: isPassword,
                 )
               ],
             ),
