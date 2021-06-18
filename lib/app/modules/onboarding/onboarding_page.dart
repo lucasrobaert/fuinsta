@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fuinsta/app/constants.dart';
+import 'package:fuinsta/app/modules/onboarding/onboarding_store.dart';
 
 class OnboardingPage extends StatefulWidget {
   final String title;
@@ -9,7 +10,8 @@ class OnboardingPage extends StatefulWidget {
   OnboardingPageState createState() => OnboardingPageState();
 }
 
-class OnboardingPageState extends State<OnboardingPage> {
+class OnboardingPageState
+    extends ModularState<OnboardingPage, OnboardingStore> {
   late PageController _pageController;
 
   @override
@@ -38,11 +40,22 @@ class OnboardingPageState extends State<OnboardingPage> {
             text: 'Compartilhe e veja fotos dos seus amigos!',
             child: Column(
               children: [
-                SizedBox(height: 30,),
-                ElevatedButton(onPressed: () {
-                  Modular.to.pushReplacementNamed(Constants.Routes.REGISTER);
-                }, child: Text('Cadastre-se')),
-                TextButton(onPressed: () {}, child: Text('Já tem cadastro?'))
+                SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      store.markOnboardingDone();
+                      Modular.to
+                          .pushReplacementNamed(Constants.Routes.REGISTER);
+                    },
+                    child: Text('Cadastre-se')),
+                TextButton(
+                    onPressed: () {
+                      store.markOnboardingDone();
+                      //TODO: ir para tela de login
+                    },
+                    child: Text('Já tem cadastro?'))
               ],
             ),
           ),
