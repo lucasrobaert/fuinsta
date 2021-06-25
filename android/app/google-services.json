@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "198777406843",
+    "project_id": "fuinsta-940d3",
+    "storage_bucket": "fuinsta-940d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198777406843:android:747128996278c20a72a9de",
+        "android_client_info": {
+          "package_name": "com.example.fuinsta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198777406843-0i2tdnhv7fa51gtn6cj54tvji3a2no9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEPkwKtThapQ11ShzwDny8CUXiaxxkkzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198777406843-0i2tdnhv7fa51gtn6cj54tvji3a2no9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
