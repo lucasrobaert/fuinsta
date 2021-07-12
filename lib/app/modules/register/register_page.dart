@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:fuinsta/app/constants.dart';
-import 'package:fuinsta/app/modules/register/register_store.dart';
-import 'package:mobx/mobx.dart';
 
 class RegisterPage extends StatefulWidget {
   final String title;
@@ -13,14 +8,12 @@ class RegisterPage extends StatefulWidget {
   RegisterPageState createState() => RegisterPageState();
 }
 
-class RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
+class RegisterPageState extends State<RegisterPage> {
   late PageController _pageController;
 
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
-
-  late final ReactionDisposer _disposer;
 
   @override
   void initState() {
@@ -30,59 +23,7 @@ class RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-
-    _disposer = when(
-        (_) => store.user != null,
-        () => Modular.to.pushReplacementNamed(Constants.Routes.HOME)
-    );
   }
-
-  @override
-  void dispose() {
-    _disposer();
-    super.dispose();
-  }
-
-  late final Widget _form = PageView(
-    controller: _pageController,
-    scrollDirection: Axis.vertical,
-    physics: NeverScrollableScrollPhysics(),
-    children: [
-      _FormField(
-        controller: _nameController,
-        label: 'Qual é o seu nome ?',
-        showBackButton: false,
-        onNext: (){
-          _pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
-        },
-      ),
-      _FormField(
-        controller: _emailController,
-        label: 'Qual é o seu melhor e-mail ?',
-        onNext: (){
-          _pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
-        },
-        onBack: (){
-          _pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
-        },
-      ),
-      _FormField(
-        isPassword: true,
-        controller: _passwordController,
-        label: 'Crie uma senha',
-        onNext: (){
-          store.registerUser(
-              name: _nameController.text,
-              email: _emailController.text,
-              password: _passwordController.text
-          );
-        },
-        onBack: (){
-          _pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
-        },
-      ),
-    ],
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -90,25 +31,41 @@ class RegisterPageState extends ModularState<RegisterPage, RegisterStore> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Observer(
-        builder: (_) {
-          if(store.loading){
-            return Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  Text('Aguarde.. salvando seu cadastro!')
-
-                ],
-              ),
-            );
-          }
-          return _form;
-        }
-      )
+      body: PageView(
+        controller: _pageController,
+        scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          _FormField(
+            controller: _nameController,
+            label: 'Qual é o seu nome ?',
+            showBackButton: false,
+            onNext: (){
+              _pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
+            },
+          ),
+          _FormField(
+            controller: _emailController,
+            label: 'Qual é o seu melhor e-mail ?',
+            onNext: (){
+              _pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
+            },
+            onBack: (){
+              _pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
+            },
+          ),
+          _FormField(
+            isPassword: true,
+            controller: _passwordController,
+            label: 'Crie uma senha',
+            onNext: (){
+            },
+            onBack: (){
+              _pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
