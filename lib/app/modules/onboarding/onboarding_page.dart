@@ -53,7 +53,8 @@ class OnboardingPageState
                 TextButton(
                     onPressed: () {
                       store.markOnboardingDone();
-                      //TODO: ir para tela de login
+                      store.markRegisterDone();
+                      Modular.to.pushReplacementNamed(Constants.Routes.LOGIN);
                     },
                     child: Text('Já tem cadastro?'))
               ],
