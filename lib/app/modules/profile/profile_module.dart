@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:fuinsta/app/modules/profile/profile_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fuinsta/app/modules/profile/profile_store.dart';
 import '../../constants.dart';
 import 'profile_page.dart';
 import 'edit_page.dart';
