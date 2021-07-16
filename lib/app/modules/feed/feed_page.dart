@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fuinsta/app/shared/loading_widget.dart';
 
+import '../../constants.dart';
 import 'feed_store.dart';
 
 class FeedPage extends StatefulWidget {
@@ -31,7 +32,9 @@ class FeedPageState extends ModularState<FeedPage, FeedStore> {
           ),
           IconButton(
             icon: Icon(Icons.chat_bubble_outline_rounded),
-            onPressed: () {},
+            onPressed: () {
+              Modular.to.pushNamed(Constants.Routes.CHAT);
+            },
           ),
         ],
       ),

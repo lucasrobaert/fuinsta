@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fuinsta/app/modules/chat/chat_module.dart';
 import 'package:fuinsta/app/shared/app_route_guard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -44,6 +45,7 @@ class AppModule extends Module {
     ModuleRoute(Constants.Routes.FEED, module: FeedModule(), guards: [_routeGuard]),
     ModuleRoute(Constants.Routes.SEARCH, module: SearchModule(), guards: [_routeGuard]),
     ModuleRoute(Constants.Routes.PROFILE, module: ProfileModule(), guards: [_routeGuard]),
+    ModuleRoute(Constants.Routes.CHAT, module: ChatModule(), guards: [_routeGuard]),
   ];
 
   Module _initialModule() {
